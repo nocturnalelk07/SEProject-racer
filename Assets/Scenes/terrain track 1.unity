@@ -1240,7 +1240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee2c797784364ca42aa76ae73bdbff34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  motorTorque: 1500
+  motorTorque: 1000
   brakeTorque: 2000
   maxSpeed: 20
   steeringRange: 30
