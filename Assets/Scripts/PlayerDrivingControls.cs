@@ -53,6 +53,15 @@ public partial class @PlayerDrivingControls: IInputActionCollection2, IDisposabl
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""OpenMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""7b645140-6fc0-40bc-8592-bbbb80eddefd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -187,6 +196,17 @@ public partial class @PlayerDrivingControls: IInputActionCollection2, IDisposabl
                     ""action"": ""Turn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0796e3d3-8f67-406b-935d-c08955fc3b6f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -198,6 +218,7 @@ public partial class @PlayerDrivingControls: IInputActionCollection2, IDisposabl
         m_Driving_Horn = m_Driving.FindAction("Horn", throwIfNotFound: true);
         m_Driving_AccelerateDecelerate = m_Driving.FindAction("Accelerate/Decelerate", throwIfNotFound: true);
         m_Driving_Turn = m_Driving.FindAction("Turn", throwIfNotFound: true);
+        m_Driving_OpenMenu = m_Driving.FindAction("OpenMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -262,6 +283,7 @@ public partial class @PlayerDrivingControls: IInputActionCollection2, IDisposabl
     private readonly InputAction m_Driving_Horn;
     private readonly InputAction m_Driving_AccelerateDecelerate;
     private readonly InputAction m_Driving_Turn;
+    private readonly InputAction m_Driving_OpenMenu;
     public struct DrivingActions
     {
         private @PlayerDrivingControls m_Wrapper;
@@ -269,6 +291,7 @@ public partial class @PlayerDrivingControls: IInputActionCollection2, IDisposabl
         public InputAction @Horn => m_Wrapper.m_Driving_Horn;
         public InputAction @AccelerateDecelerate => m_Wrapper.m_Driving_AccelerateDecelerate;
         public InputAction @Turn => m_Wrapper.m_Driving_Turn;
+        public InputAction @OpenMenu => m_Wrapper.m_Driving_OpenMenu;
         public InputActionMap Get() { return m_Wrapper.m_Driving; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -287,6 +310,9 @@ public partial class @PlayerDrivingControls: IInputActionCollection2, IDisposabl
             @Turn.started += instance.OnTurn;
             @Turn.performed += instance.OnTurn;
             @Turn.canceled += instance.OnTurn;
+            @OpenMenu.started += instance.OnOpenMenu;
+            @OpenMenu.performed += instance.OnOpenMenu;
+            @OpenMenu.canceled += instance.OnOpenMenu;
         }
 
         private void UnregisterCallbacks(IDrivingActions instance)
@@ -300,6 +326,9 @@ public partial class @PlayerDrivingControls: IInputActionCollection2, IDisposabl
             @Turn.started -= instance.OnTurn;
             @Turn.performed -= instance.OnTurn;
             @Turn.canceled -= instance.OnTurn;
+            @OpenMenu.started -= instance.OnOpenMenu;
+            @OpenMenu.performed -= instance.OnOpenMenu;
+            @OpenMenu.canceled -= instance.OnOpenMenu;
         }
 
         public void RemoveCallbacks(IDrivingActions instance)
@@ -322,5 +351,6 @@ public partial class @PlayerDrivingControls: IInputActionCollection2, IDisposabl
         void OnHorn(InputAction.CallbackContext context);
         void OnAccelerateDecelerate(InputAction.CallbackContext context);
         void OnTurn(InputAction.CallbackContext context);
+        void OnOpenMenu(InputAction.CallbackContext context);
     }
 }
