@@ -10,10 +10,15 @@ public class CarControl : MonoBehaviour
     public float steeringRange = 30;
     public float steeringRangeAtMaxSpeed = 10;
     public float centreOfGravityOffset = -1f;
+    public int currentSpeed;
 
     WheelControl[] wheels;
     Rigidbody rigidBody;
 
+    public int getCarSpeed()
+    {
+        return currentSpeed;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +41,7 @@ public class CarControl : MonoBehaviour
         // Calculate current speed in relation to the forward direction of the car
         // (this returns a negative number when traveling backwards)
         float forwardSpeed = Vector3.Dot(transform.forward, rigidBody.velocity);
+        currentSpeed = (int) forwardSpeed;
 
 
         // Calculate how close the car is to top speed
