@@ -6,18 +6,24 @@ public class CarControl : MonoBehaviour
 {
     public float motorTorque = 2000;
     public float brakeTorque = 2000;
-    public float maxSpeed = 20;
+    [SerializeField]
+    public float maxSpeed;
     public float steeringRange = 30;
     public float steeringRangeAtMaxSpeed = 10;
     public float centreOfGravityOffset = -1f;
-    public int currentSpeed;
+    public float currentSpeed;
 
     WheelControl[] wheels;
     Rigidbody rigidBody;
 
-    public int getCarSpeed()
+    public float getCarSpeed()
     {
         return currentSpeed;
+    }
+
+    public float getCarMaximumSpeed()
+    {
+        return maxSpeed;
     }
     // Start is called before the first frame update
     void Start()
