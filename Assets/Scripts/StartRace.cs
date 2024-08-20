@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartEndRace : MonoBehaviour
+public class StartRace : MonoBehaviour
 {
 
     [SerializeField]
@@ -14,10 +14,6 @@ public class StartEndRace : MonoBehaviour
         {
             tracker.startRace();
             Debug.Log("race started");
-        } else
-        {
-            tracker.stopRace();
-            Debug.Log("race finished!!");
         }
     }
 }
