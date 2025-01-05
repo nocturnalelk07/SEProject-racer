@@ -9,6 +9,8 @@ public class menuActions : MonoBehaviour
 {
     public int mainMenu = 0;
     public int firstScene = 1;
+    public int secondScene = 2;
+
     public void QuitApplication()
     {
         Application.Quit();
@@ -17,7 +19,7 @@ public class menuActions : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(firstScene);
+        SceneManager.LoadScene(secondScene);
     }
 
     public void ReturnToMenu()

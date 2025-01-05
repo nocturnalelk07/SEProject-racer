@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/terrain track 1.unity
     guid: 61459f6b314b2084d9ab463264c2da8b
+  - enabled: 1
+    path: Assets/Scenes/track 2.unity
+    guid: c59d0d057ffe19c4eaad5e0f731fc65f
   m_configObjects: {}
