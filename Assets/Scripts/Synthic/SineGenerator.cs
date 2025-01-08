@@ -23,9 +23,17 @@ namespace Synthic
             _burstSine ??= BurstCompiler.CompileFunctionPointer<BurstSineDelegate>(BurstSine).Invoke;
         }
 
+        override
+        public double getPhase()
+        {
+            return _phase;
+        }
+
         protected override void ProcessBuffer(ref SynthBuffer buffer)
         {
+            Debug.Log("phase " + _phase);
             _phase = _burstSine(ref buffer, _phase, _sampleRate, amplitude, frequency);
+            
         }
 
         private delegate double BurstSineDelegate(ref SynthBuffer buffer,

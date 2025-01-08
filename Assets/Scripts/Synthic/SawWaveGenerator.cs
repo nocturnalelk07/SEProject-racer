@@ -23,6 +23,12 @@ namespace Synthic
             _burstSine ??= BurstCompiler.CompileFunctionPointer<BurstSineDelegate>(BurstSine).Invoke;
         }
 
+        override
+        public double getPhase()
+        {
+            return _phase;
+        }
+
         protected override void ProcessBuffer(ref SynthBuffer buffer)
         {
             _phase = _burstSine(ref buffer, _phase, _sampleRate, amplitude, frequency);
@@ -41,7 +47,7 @@ namespace Synthic
             for (int sample = 0; sample < buffer.Length; sample++)
             {
                 // calculate and set buffer sample
-                buffer[sample] = new StereoData((float)(math.sin((((phase + 0.5) % 1) - 0.5) * 2) * amplitude));
+                buffer[sample] = new StereoData((float)((((phase + 0.5) % 1) - 0.5) * 2));
 
                 // increment _phase value for next iteration
                 phase = (phase + phaseIncrement) % 1;

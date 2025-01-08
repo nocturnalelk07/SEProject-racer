@@ -15,13 +15,19 @@ namespace Synthic
 
         private static BurstSineDelegate _burstSine;
 
-        private double _phase;
+        public double _phase;
         private int _sampleRate;
 
         private void Awake()
         {
             _sampleRate = AudioSettings.outputSampleRate;
             _burstSine ??= BurstCompiler.CompileFunctionPointer<BurstSineDelegate>(BurstSine).Invoke;
+        }
+
+        override
+        public double getPhase()
+        {
+            return _phase;
         }
 
         protected override void ProcessBuffer(ref SynthBuffer buffer)

@@ -37,5 +37,7 @@ namespace Synthic
 
         // override for creating custom providers
         protected abstract void ProcessBuffer(ref SynthBuffer buffer);
+
+        public abstract double getPhase();
     }
 }
