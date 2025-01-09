@@ -6,11 +6,10 @@ using UnityEngine;
 public class MusicController : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private SynthProvider wave;
+    [SerializeField] private double modulatorSpeed = 0.1;
+    [SerializeField] private double modulatorDepth = 0.2;
 
     private float LFO_index;
-    private double modulatorSpeed = 0.1;
-    private double modulatorDepth = 0.2;
 
     //this will set the volume of the wave being played
     //not properly implemented currently
@@ -18,6 +17,11 @@ public class MusicController : MonoBehaviour
     {
         audioSource.volume = (float) volume;
 
+    }
+
+    public void setModulatorSpeed(double speed)
+    {
+        modulatorSpeed = speed;
     }
 
     private void FixedUpdate()

@@ -31,7 +31,6 @@ namespace Synthic
 
         protected override void ProcessBuffer(ref SynthBuffer buffer)
         {
-            Debug.Log("phase " + _phase);
             _phase = _burstSine(ref buffer, _phase, _sampleRate, amplitude, frequency);
             
         }
