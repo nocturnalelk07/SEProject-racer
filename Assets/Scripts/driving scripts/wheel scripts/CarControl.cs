@@ -7,11 +7,11 @@ public class CarControl : MonoBehaviour
     public float motorTorque = 2000;
     public float brakeTorque = 2000;
     [SerializeField]
-    public float maxSpeed;
+    private float maxSpeed;
     public float steeringRange = 30;
     public float steeringRangeAtMaxSpeed = 10;
     public float centreOfGravityOffset = -1f;
-    public float currentSpeed;
+    private float currentSpeed;
 
     WheelControl[] wheels;
     Rigidbody rigidBody;
