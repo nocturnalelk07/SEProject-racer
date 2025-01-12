@@ -1,6 +1,8 @@
 using Synthic;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MusicController : MonoBehaviour
@@ -8,6 +10,8 @@ public class MusicController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private double modulatorSpeed = 0.1;
     [SerializeField] private double modulatorDepth = 0.2;
+    [SerializeField] private bool volume;
+    [SerializeField] private bool pitch;
 
     private float LFO_index;
 
@@ -26,11 +30,21 @@ public class MusicController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //double _phase = wave.getPhase();
-        //setVolume(_phase);
+        LFO_index = LFO_index + (float)modulatorSpeed;
+        if (volume) 
+        {
+            audioSource.volume = (float)((Mathf.Sin(LFO_index) * modulatorDepth));
+        }
+        if (pitch)
+        {
+            //ddddddaudioSource.pitch = (float)((Mathf.Sin(LFO_index) * modulatorDepth));
+            audioSource.pitch = (float)(LFOSawtoothWave(LFO_index));
+        }
         
-        LFO_index = LFO_index + (float) modulatorSpeed;
-        audioSource.volume = (float)((Mathf.Sin(LFO_index) * modulatorDepth));
+    }
 
+    private double LFOSawtoothWave(float input)
+    {
+        return (2 * (input - math.floor(input)));
     }
 }
