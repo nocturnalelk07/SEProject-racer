@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class CarControl : MonoBehaviour
@@ -12,6 +13,7 @@ public class CarControl : MonoBehaviour
     public float steeringRangeAtMaxSpeed = 10;
     public float centreOfGravityOffset = -1f;
     private float currentSpeed;
+    private float hInput;
 
     WheelControl[] wheels;
     Rigidbody rigidBody;
@@ -19,6 +21,11 @@ public class CarControl : MonoBehaviour
     public float getCarSpeed()
     {
         return currentSpeed;
+    }
+
+    public float getHInput()
+    {
+        return hInput;
     }
 
     public float getCarMaximumSpeed()
@@ -42,7 +49,7 @@ public class CarControl : MonoBehaviour
     {
 
         float vInput = Input.GetAxis("Vertical");
-        float hInput = Input.GetAxis("Horizontal");
+        hInput = Input.GetAxis("Horizontal");
 
         // Calculate current speed in relation to the forward direction of the car
         // (this returns a negative number when traveling backwards)
