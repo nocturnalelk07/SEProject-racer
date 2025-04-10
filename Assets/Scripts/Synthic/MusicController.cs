@@ -56,4 +56,9 @@ public class MusicController : MonoBehaviour
     {
         return (2 * (input - math.floor(input)));
     }
+
+    private void OnEnable()
+    {
+        graphTime = 0;
+    }
 }
